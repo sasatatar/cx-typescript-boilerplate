@@ -17,7 +17,7 @@ export function register(name, category, content) {
 }
 
 export function getCategories() {
-    return ['Forms', 'Grid'].map(c => ({
+    return ['Forms', 'Grid', 'Other examples'].map(c => ({
         name: c,
         examples: categoryExample[c] || []
     }));

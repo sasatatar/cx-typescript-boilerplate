@@ -15,6 +15,9 @@ export default <cx>
             <Route route="~/about" url={{ bind: "url" }}>
                 { About }
             </Route>
+            <Route route="~/examples" url={{ bind: "url" }}>
+                { Examples }
+            </Route>
             {Examples}
         </Sandbox>
     </div>

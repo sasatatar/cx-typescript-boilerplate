@@ -1,5 +1,6 @@
 import "./forms";
 import "./grid";
+import "./examples";
 
 import { cx, Route, PureContainer } from 'cx/widgets';
 
