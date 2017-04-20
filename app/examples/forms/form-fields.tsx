@@ -102,6 +102,46 @@ register('Form Fields', 'Forms', <cx>
                      layout={{type: LabelsTopLayout, vertical: true}}>
                 <ColorPicker value={{ bind: "color" }}/>
             </Section>
+
+            <Section mod="well" header={{ level: 4, text: "Slider"}}
+                     layout={{type: LabelsTopLayout, vertical: true}}>
+                <div layout={LabelsLeftLayout}>
+                    <Slider
+                    label="Standard"
+                    value={{ bind: "$page.to" }}
+                    tooltip={{ text: { tpl: "{$page.to:n;2}" }, placement: "up" }}
+                    />
+                    <Slider label="Stepped" from={{ bind: "$page.from" }} step={10} />
+                    <Slider label="Range" from={{ bind: "$page.from" }} to={{ bind: "$page.to" }}/>
+                    <Slider
+                    label="Disabled"
+                    from={{ bind: "$page.from" }}
+                    to= {{bind: "$page.to" }}
+                    disabled
+                    />
+                </div>
+                <div>
+                    <Slider
+                        vertical
+                        from={{ bind: "$page.from" }}
+                        to={{ bind :"$page.to" }}
+                        step={10}
+                        rangeStyle="background:lightsteelblue"
+                    />
+                    <Slider
+                        vertical
+                        from={{ bind: "$page.from" }}
+                        to={{ bind:"$page.to" }}
+                        rangeStyle="background:lightgreen"
+                    />
+                    <Slider
+                        vertical
+                        from={{ bind:"$page.from" }}
+                        to={{ bind:"$page.to" }}
+                        rangeStyle="background:lightyellow"
+                    />
+                </div>
+            </Section>
         </FlexRow>
     </div>
 </cx>);

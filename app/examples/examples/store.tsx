@@ -17,15 +17,30 @@ import {
     TextField,
     Section,
     FlexRow,
-    Button
+    Button,
+    MsgBox
 } from "cx/widgets";
-
+import {computable} from "cx/data";
 import {LabelsLeftLayout, LabelsTopLayout, Controller} from "cx/ui";
 
 class PageController extends Controller {
-  onInit() {
-    this.store.init("$page", { count: 0 });
-  }
+    onInit() {
+        this.store.init('$page', {
+            name: 'Jane',
+            disabled: true,
+            todoList: [
+                { id: 1, text: 'Learn Cx', done: true }, 
+                { id: 2, text: "Feed the cat", done: false },
+                { id: 3, text: "Take a break", done: false }
+            ],
+            count: 0
+        });
+    }
+
+    greet() {
+        let name = this.store.get('$page.name')
+        MsgBox.alert(`Hello, ${name}!`);
+    }
 }
 
 register('Store', 'Other examples', <cx>
@@ -47,6 +62,17 @@ register('Store', 'Other examples', <cx>
                   >
                     +1
                   </Button>
+                </div>
+            </Section>
+            <Section mod="well">
+                <div layout={LabelsTopLayout} >
+                    <TextField label="Name" value={{ bind: "$page.name" }} disabled={{ bind: "$page.disabled" }} />
+                    <Button onClick={(e, instance) => {
+                            let {store} = instance;
+                            store.set("$page.disabled", !store.get("$page.disabled"));
+                        }}
+                        text={computable('$page.disabled', (disabled) => disabled ? "Enable input" : "Disable input")}   
+                    />
                 </div>
             </Section>
         </FlexRow>
