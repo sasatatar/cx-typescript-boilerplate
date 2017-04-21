@@ -20,10 +20,13 @@ import {
     Button,
     MsgBox,
     CheckboxProps,
-    Repeater
+    Repeater,
+    Text,
+    Slider
 } from "cx/widgets";
 import {computable, updateArray} from "cx/data";
 import {LabelsLeftLayout, LabelsTopLayout, Controller} from "cx/ui";
+
 
 class PageController extends Controller {
     onInit() {
@@ -131,7 +134,51 @@ register('Store', 'Other examples', <cx>
                     </div>
                 </div>
             </Section>
+            <Section mod="well">
+                 <div layout={LabelsLeftLayout}>
+                    <TextField value={{ bind: 'intro.core.firstName' }} label="First Name" />
+                    <TextField value={{ bind: 'intro.core.lastName' }} label="Last Name"/>
+                    <TextField value={{ tpl: 'Hello {intro.core.firstName} {intro.core.lastName}!' }} label="Template" mode="view"/>
+                    <TextField value={{ expr: '"Hello "+{intro.core.firstName:s}+" "+{intro.core.lastName:s}+"!"' }} label="Expression" mode="view"/>
+                </div>
+            </Section>
+            <Section mod="well">
+                <div preserveWhitespace>
+                    <NumberField value={{ bind: 'intro.core.a' }} placeholder="A" />
+                    +
+                    <NumberField value={{ bind:'intro.core.b' }} placeholder="B" />
+                    =
+                    <Text value={computable('intro.core.a', 'intro.core.b', (a, b) => a==null || b==null ? "ERR" : a + b )} />
+                 </div>
+            </Section>
+            <Section mod="well">
+                <div preserveWhitespace>
+                    A + 2 = <NumberField style="width:50px"
+                                        value={{
+                                            expr: '{intro.core.a}+2',
+                                            set: (value, {store}) => { store.set('intro.core.a', value - 2) }
+                                        }}/>
+                    <br/>
+                    A = <Text bind="intro.core.a" />
+                </div>
+            </Section>
+          
+            <Section mod="well" title="Direct">
+                <Slider value={{ bind: "$page.slider.direct" }}/>
+                <Slider value={{ bind: "$page.slider.direct" }}/>
+            </Section>
+            <Section mod="well" title="Throttle: 300ms">
+                <Slider value={{ bind: "$page.slider.throttled" , throttle: 300  }}/>
+                <br />
+                <Slider value={{ bind: "$page.slider.throttled", throttle: 300 }} />
+            </Section>
+            <Section mod="well" title="Debounce: 300ms">
+                <Slider value={{ bind: "$page.slider.debounced", debounce: 300 }} />
+                <br />
+                <Slider value={{ bind: "$page.slider.debounced", debounce: 300 }} />
+            </Section>
 
+           
         </FlexRow>
         <h3 style={{marginTop: "3rem"}}>Standalone</h3>
 
