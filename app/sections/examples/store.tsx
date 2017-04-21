@@ -48,9 +48,9 @@ class PageController extends Controller {
 register('Store', 'Other examples', <cx>
     <h2 putInto="header">Form Fields</h2>
     <div class="example pad wrap">
-        <h3>Fields</h3>
+        <h3>Store</h3>
         <FlexRow wrap spacing="large">
-            <Section mod="well" header={{ level: 5, text: 'Storee'}} layout={{type: LabelsTopLayout, vertical: true}}>
+            <Section mod="well" header={{ level: 5, text: 'Counter'}} layout={{type: LabelsTopLayout, vertical: true}}>
                 <div layout={LabelsTopLayout} controller={PageController}>
                   <NumberField
                     label="Count"

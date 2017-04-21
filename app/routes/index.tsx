@@ -4,7 +4,9 @@ import AppLayout from '../layout';
 
 import Default from './default';
 import About from './about';
-import Examples from '../examples';
+import Examples from './examples';
+
+import Sections from '../sections';
 
 export default <cx>
     <div outerLayout={AppLayout}>
@@ -15,10 +17,10 @@ export default <cx>
             <Route route="~/about" url={{ bind: "url" }}>
                 { About }
             </Route>
-            <Route route="~/examples" url={{ bind: "url" }}>
+            <Route route="~/other%20examples" url={{ bind: "url" }}>
                 { Examples }
             </Route>
-            {Examples}
+            {Sections}
         </Sandbox>
     </div>
 </cx>

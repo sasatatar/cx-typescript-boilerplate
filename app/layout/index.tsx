@@ -1,6 +1,6 @@
 import {cx, ContentPlaceholder, Link} from 'cx/widgets';
 
-import {getCategories} from '../examples';
+import {getCategories} from '../sections';
 
 export default <cx>
     <div class="app">

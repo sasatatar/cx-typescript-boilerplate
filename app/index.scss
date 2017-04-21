@@ -1,5 +1,5 @@
 $cx-include-global-rules: true;
-$cx-theme-primary-color: #558B2F;
+$cx-theme-primary-color: dodgerblue;
 $cx-default-input-width: 220px;
 
 @import "~cx-theme-material/src/variables";
@@ -7,4 +7,4 @@ $cx-default-input-width: 220px;
 
 @import "layout/index";
 @import "routes/index";
-@import "examples/index";
+@import "sections/index";

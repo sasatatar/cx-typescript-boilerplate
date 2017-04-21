@@ -107,17 +107,17 @@ register('Form Fields', 'Forms', <cx>
                      layout={{type: LabelsTopLayout, vertical: true}}>
                 <div layout={LabelsLeftLayout}>
                     <Slider
-                    label="Standard"
-                    value={{ bind: "$page.to" }}
-                    tooltip={{ text: { tpl: "{$page.to:n;2}" }, placement: "up" }}
+                        label="Standard"
+                        value={{ bind: "$page.to" }}
+                        tooltip={{ text: { tpl: "{$page.to:n;2}" }, placement: "up" }}
                     />
                     <Slider label="Stepped" from={{ bind: "$page.from" }} step={10} />
                     <Slider label="Range" from={{ bind: "$page.from" }} to={{ bind: "$page.to" }}/>
                     <Slider
-                    label="Disabled"
-                    from={{ bind: "$page.from" }}
-                    to= {{bind: "$page.to" }}
-                    disabled
+                        label="Disabled"
+                        from={{ bind: "$page.from" }}
+                        to= {{bind: "$page.to" }}
+                        disabled
                     />
                 </div>
                 <div>
