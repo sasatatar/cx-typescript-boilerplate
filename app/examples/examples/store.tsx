@@ -18,9 +18,11 @@ import {
     Section,
     FlexRow,
     Button,
-    MsgBox
+    MsgBox,
+    CheckboxProps,
+    Repeater
 } from "cx/widgets";
-import {computable} from "cx/data";
+import {computable, updateArray} from "cx/data";
 import {LabelsLeftLayout, LabelsTopLayout, Controller} from "cx/ui";
 
 class PageController extends Controller {
@@ -52,7 +54,7 @@ register('Store', 'Other examples', <cx>
                 <div layout={LabelsTopLayout} controller={PageController}>
                   <NumberField
                     label="Count"
-                    value={{ bind:"$page.count"}}
+                    value={{ bind: "$page.count" }}
                     style="width: 50px"
                   />
                   <Button
@@ -62,6 +64,16 @@ register('Store', 'Other examples', <cx>
                   >
                     +1
                   </Button>
+                </div>
+            </Section>
+            <Section mod="well">
+                <div layout={LabelsTopLayout}>
+                    <TextField value={{ bind: "$page.name" }} label="Name" />
+                    <Button onClick={(e, {store}) =>
+                        store.delete('$page.name')
+                    }>
+                        Clear
+                    </Button>
                 </div>
             </Section>
             <Section mod="well">
@@ -75,9 +87,52 @@ register('Store', 'Other examples', <cx>
                     />
                 </div>
             </Section>
+            <Section mod="well">
+                <div layout={LabelsTopLayout}>
+                    <TextField label="Origin" value={{ bind: "$page.name" }}/>
+                    <TextField label="Destination" value={{ bind:"$page.copyDestination" }} placeholder="click Copy" />
+                    <Button onClick={(e, {store}) => {
+                        store.copy('$page.name', '$page.copyDestination');    
+                    }}>Copy</Button>
+                </div>
+            </Section>
+             <Section mod="well">
+                <div layout={LabelsTopLayout}>
+                    <TextField label="Origin" value={{ bind: "$page.name" }}/>
+                    <TextField label="Destination" value={{ bind: "$page.moveDestination" }} placeholder="click Move" />
+                    <Button onClick={(e, {store}) => {
+                        store.move('$page.name', '$page.moveDestination'); 
+                    }}>Move</Button>
+                </div>
+            </Section>
+            <Section mod="well">
+               <div class="widgets">
+                    <div layout={LabelsLeftLayout}>
+                        <strong>Todo List</strong>
+                        <Repeater records={{ bind: "$page.todoList"}}>
+                            <Checkbox value={{ bind: "$record.done" }} text={{ bind: "$record.text" }}/>
+                            <br />
+                        </Repeater>
+                        <Button
+                            onClick={(e, { store }) => {
+                                store.update(
+                                    "$page.todoList",
+                                    updateArray,
+                                    item => ({
+                                        ...item,
+                                        done: true
+                                    }),
+                                    item => !item.done
+                                );
+                            }}
+                        >
+                            Mark all as done
+                        </Button>
+                    </div>
+                </div>
+            </Section>
+
         </FlexRow>
-
-
         <h3 style={{marginTop: "3rem"}}>Standalone</h3>
 
         <FlexRow wrap spacing="large">
