@@ -23,6 +23,7 @@ import {
     Repeater,
     Text,
     Slider,
+    Option
 } from "cx/widgets";
 import {computable, updateArray} from "cx/data";
 import {LabelsLeftLayout, LabelsTopLayout, Controller} from "cx/ui";
@@ -72,11 +73,11 @@ class MethodController extends Controller {
    }
 }
 register('Controller', 'Other examples', <cx>
-    <h2 putInto="header">Form Fields</h2>
+    <h2 putInto="header">Controller</h2>
     <div class="example pad wrap">
-        <h3>Store</h3>
+        <h3>Controller</h3>
         <FlexRow wrap spacing="large">
-            <Section mod="well" header={{ level: 5, text: 'Counter'}} layout={{type: LabelsTopLayout, vertical: true}}>
+            <Section mod="well" layout={{type: LabelsTopLayout, vertical: true}}>
                <div controller={CbController}>
                     <Checkbox value={{ bind: "$page.cb1" }}>Checkbox 1</Checkbox>
                     <br/>
@@ -92,15 +93,14 @@ register('Controller', 'Other examples', <cx>
                 <div controller={InfoController}>
                     <Select value={{ bind: "$page.cityId" }}>
                         <Repeater records={{ bind: '$page.cities' }}>
-                            <option value={{ bind: '$record.id' }} text={{ bind: '$record.text' }}/>
+                            <Option value={{ bind: '$record.id' }} text={{ bind: '$record.text' }}/>
                         </Repeater>
                     </Select>
                     <p visible={{ expr: '{$page.cityId}' }}>
                         <Text tpl='{$page.city.text} has {$page.city.population} people.' />
                     </p>
                  </div>
-            </Section>
-           
+            </Section>       
         </FlexRow>
     </div>
 </cx>);

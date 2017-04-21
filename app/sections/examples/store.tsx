@@ -49,7 +49,7 @@ class PageController extends Controller {
 }
 
 register('Store', 'Other examples', <cx>
-    <h2 putInto="header">Form Fields</h2>
+    <h2 putInto="header">Store</h2>
     <div class="example pad wrap">
         <h3>Store</h3>
         <FlexRow wrap spacing="large">
