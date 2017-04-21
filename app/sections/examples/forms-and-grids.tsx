@@ -121,6 +121,56 @@ register('Forms and Grids', 'Other examples', <cx>
                         />
                     </div>
                 </Section>
+                <Section mod="well" layout={{type: LabelsTopLayout, vertical: true}}>
+                    <div layout={LabelsLeftLayout}>
+                        <Checkbox label="Native" value={{ bind: "$page.checked" }} text="Checkbox" native/>
+                        <Checkbox label="Standard" value={{ bind: "$page.checked" }} text="Checkbox" />
+                        <Checkbox label="Disabled" value={{ bind: "$page.checked" }} disabled text="Checkbox" />
+                        <Checkbox label="Readonly" value={{ bind: "$page.checked" }} readOnly text="Checkbox" />
+                    </div>
+                    <div layout={LabelsLeftLayout}>
+                        <Checkbox label="Required" value={{ bind: "$page.checked" }} required text="Checkbox"/>
+                        <Checkbox label="Styled" value={{ bind: "$page.checked" }} inputStyle="color:red" text="Checkbox"/>
+                        <Checkbox label="View" value={{ bind: "$page.checked" }} mode="view" text="Checkbox" emptyText="N/A" />
+                        <Checkbox label="Three State" value={{ bind: "$page.checked2" }} text="Checkbox" indeterminate />
+                    </div>
+                </Section>
+                <Section mod="well" layout={{type: LabelsTopLayout, vertical: true}}>
+                    <div layout={LabelsLeftLayout}>
+                        <Radio label="Native" value={{ bind: "$page.option" }} option="0" text="Radio" native/>
+                        <Radio label="Standard" value={{ bind: "$page.option" }} option="1" text="Radio"/>
+                        <Radio label="Disabled" value={{ bind: "$page.option" }} option="2" disabled text="Radio"/>
+                    </div>
+                    <div layout={LabelsLeftLayout}>
+                        <Radio label="Required" value={{ bind: "$page.option" }} option="4" required text="Radio"/>
+                        <Radio label="Readonly" value={{ bind: "$page.option" }} option="3" readOnly text="Radio"/>
+                        <Radio label="Styled" value={{ bind: "$page.option" }} option="5" inputStyle="color:red" text="Radio"/>
+                    </div>
+                </Section>
+                <Section mod="well" layout={{type: LabelsTopLayout, vertical: true}}>
+                    <div layout={LabelsLeftLayout}>
+                        <DateField label="Standard" value={{ bind: "$page.date" }} format="yyyyMMMMdd" autoFocus/>
+                        <DateField label="Disabled" value={{ bind: "$page.date" }} disabled />
+                        <DateField label="Readonly" value={{ bind: "$page.date" }}readOnly />
+                        <DateField label="Placeholder" value={{ bind: "$page.date" }} placeholder="Type something here..." />
+                    </div>
+                    <div layout={LabelsLeftLayout}>
+                        <DateField label="Required" value={{ bind: "$page.date" }} />
+                        <DateField label="Styled" value={{ bind: "$page.date" }} inputStyle={{border: '1px solid green'}} icon="clock-o"/>
+                        <DateField label="View" value={{ bind: "$page.date" }} mode="view" />
+                        <DateField label="EmptyText" value={{ bind: "$page.date" }} mode="view" emptyText="N/A" />
+                    </div>
+                </Section>
+                <Section mod="well" layout={{type: LabelsTopLayout, vertical: true}}>
+                    <div class="widgets">
+                        <Calendar value={{ bind: "$page.date" }}/>
+                        <Calendar value={{ bind: "$page.date" }}
+                                minValue="2016-05-10"
+                                maxValue="2016-05-20"
+                                maxExclusive
+                                refDate="2016-05-08" />
+                    </div>
+                </Section>
             </FlexRow>
     </div>
 </cx>);
