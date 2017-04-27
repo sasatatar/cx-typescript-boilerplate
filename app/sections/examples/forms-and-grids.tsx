@@ -24,7 +24,11 @@ import {
     Text,
     Slider,
     LookupFieldProps,
-    List
+    List,
+    ValidationGroup,
+    FieldGroup,
+    LabeledContainer,
+    Switch
 } from "cx/widgets";
 import {computable, updateArray} from "cx/data";
 import {LabelsLeftLayout, LabelsTopLayout, Controller, PropertySelection} from "cx/ui";
@@ -354,6 +358,52 @@ register('Forms and Grids', 'Other examples', <cx>
                             value={{ bind: "$page.text" }}
                             tooltip="This tooltip is related to the field."
                         />
+                    </div>
+                </Section>
+                <Section mod="well" layout={{type: LabelsTopLayout, vertical: true}}>
+                       <div class="widgets" style={{
+                            borderLeftWidth: '3px',
+                            borderLeftStyle: 'solid',
+                            borderLeftColor: { expr: '{$page.valid} ? "lightgreen" : "red"' }
+                        }}>
+                        <ValidationGroup layout={LabelsLeftLayout} valid={{ bind: "$page.valid" }}>
+                            <TextField label="First Name" value={{ bind: "$page.firstName" }} required />
+                            <TextField label="Last Name" value={{ bind: "$page.lastName" }} required />
+                        </ValidationGroup>
+                        </div>
+                </Section>
+                <Section mod="well" layout={{type: LabelsTopLayout, vertical: true}}>
+                    <Checkbox value={{ bind: "$page.active" }}>Active</Checkbox>
+                    <FieldGroup layout={LabelsLeftLayout} enabled={{ bind: "$page.active" }}>
+                        <TextField label="First Name" value={{ bind: "$page.firstName" }} required/>
+                        <TextField label="Last Name" value={{ bind: "$page.lastName" }} required/>
+                    </FieldGroup>
+                </Section>
+                <Section mod="well" layout={{type: LabelsTopLayout, vertical: true}}>
+                    <div layout={LabelsLeftLayout}>
+                        <LabeledContainer label="Name" trimWhitespace={false}>
+                            <TextField value={{ bind: "$page.person.firstName" }} placeholder="First Name" />
+                            <TextField value={{ bind: "$page.person.lastName" }} placeholder="Last Name" />
+                        </LabeledContainer>
+                        <LabeledContainer label="Origin" trimWhitespace={false}>
+                            <DateField value={{ bind: "$page.person.dob" }} placeholder="DOB" />
+                            <TextField value={{ bind: "$page.person.country" }} placeholder="Country" />
+                        </LabeledContainer>
+                    </div>
+                </Section>
+                <Section mod="well" layout={{type: LabelsTopLayout, vertical: true}}>
+                    <div layout={LabelsLeftLayout}>
+                        <Switch label="Default" on={{ bind: "$page.check" }} text={{ expr: "{$page.check} ? 'ON' : 'OFF'" }}/>
+                        <Switch label="Disabled" value={{ bind: "$page.check" }} disabled/>
+                        <Switch label="Read-only" off={{ bind: "$page.check" }} readOnly/>
+                        <Switch
+                            label="Styled"
+                            off={{ bind: "$page.check" }}
+                            handleStyle="background:white"
+                            rangeStyle="background:lightsteelblue"
+                        >
+                            <span style="color:red">Label</span>
+                        </Switch>
                     </div>
                 </Section>
             </FlexRow>
