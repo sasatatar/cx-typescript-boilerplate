@@ -52,12 +52,16 @@ class PageController extends Controller {
         let name = this.store.get('$page.name')
         MsgBox.alert(`Hello, ${name}!`);
     }
-        init() {
+    init() {
        super.init();
-
-       this.store.set('$page.options5', Array.from({length: 5}).map((v, i)=>({ id: i, text: `Option ${i+1}`})));
-
-       this.store.set('$page.options10', Array.from({length: 10}).map((v, i)=>({ id: i, text: `Option ${i+1}`})));
+       this.store.init('$page', { 
+            records: Array.from({length: 5}, (x, i)=>({
+              text: `${i+1}`
+            })),
+            options5: Array.from({length: 5}).map((v, i)=>({ id: i, text: `Option ${i+1}`})),
+            options10: Array.from({length: 10}).map((v, i)=>({ id: i, text: `Option ${i+1}`}))
+          }
+       );
     }
 
     query(q) {
@@ -70,13 +74,6 @@ class PageController extends Controller {
           setTimeout(()=> resolve(this.cityDb.filter(x=>x.text.match(regex))), 100);
        });
     }
-    init() {
-      super.init();
-
-      this.store.init('$page.records', Array.from({length: 5}, (x, i)=>({
-         text: `${i+1}`
-      })));
-   }
  }
 
 
