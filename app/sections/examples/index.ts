@@ -5,3 +5,5 @@ import "./selection";
 import "./forms-and-grids";
 import "./navigation";
 import "./general-purpose-widgets";
+import "./overlays";
+import "./svg";
