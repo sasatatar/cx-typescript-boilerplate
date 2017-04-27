@@ -7,3 +7,4 @@ import "./navigation";
 import "./general-purpose-widgets";
 import "./overlays";
 import "./svg";
+import "./charts";
