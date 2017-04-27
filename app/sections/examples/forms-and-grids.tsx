@@ -22,10 +22,12 @@ import {
     CheckboxProps,
     Repeater,
     Text,
-    Slider
+    Slider,
+    LookupFieldProps,
+    List
 } from "cx/widgets";
 import {computable, updateArray} from "cx/data";
-import {LabelsLeftLayout, LabelsTopLayout, Controller} from "cx/ui";
+import {LabelsLeftLayout, LabelsTopLayout, Controller, PropertySelection} from "cx/ui";
 
 
 class PageController extends Controller {
@@ -46,7 +48,34 @@ class PageController extends Controller {
         let name = this.store.get('$page.name')
         MsgBox.alert(`Hello, ${name}!`);
     }
-}
+        init() {
+       super.init();
+
+       this.store.set('$page.options5', Array.from({length: 5}).map((v, i)=>({ id: i, text: `Option ${i+1}`})));
+
+       this.store.set('$page.options10', Array.from({length: 10}).map((v, i)=>({ id: i, text: `Option ${i+1}`})));
+    }
+
+    query(q) {
+       //fake data
+       if (!this.cityDb)
+          this.cityDb = Array.from({ length: 100 }).map((_, i) => ({ id: i, text: casual.city }));
+
+       var regex = new RegExp(q, 'gi');
+       return new Promise((resolve) => {
+          setTimeout(()=> resolve(this.cityDb.filter(x=>x.text.match(regex))), 100);
+       });
+    }
+    init() {
+      super.init();
+
+      this.store.init('$page.records', Array.from({length: 5}, (x, i)=>({
+         text: `${i+1}`
+      })));
+   }
+ }
+
+
 
 register('Forms and Grids', 'Other examples', <cx>
     <h2 putInto="header">Forms and Grids</h2>
@@ -169,6 +198,162 @@ register('Forms and Grids', 'Other examples', <cx>
                                 maxValue="2016-05-20"
                                 maxExclusive
                                 refDate="2016-05-08" />
+                    </div>
+                </Section>
+                <Section mod="well" layout={{type: LabelsTopLayout, vertical: true}}>
+                    <div layout={LabelsLeftLayout}>
+                        <MonthField range from={{ bind: "$page.from" }} to={{ bind: "$page.to" }} label="Range" autoFocus/>
+                        <MonthField value={{ bind: "$page.date" }} label="Single"/>
+                    </div>
+                </Section>
+                <Section mod="well" layout={{type: LabelsTopLayout, vertical: true}}>
+                    <div layout={LabelsLeftLayout}>
+                        <TextArea label="Standard" value={{ bind: "$page.text" }} rows={5} autoFocus />
+                        <TextArea label="Disabled" value={{ bind: "$page.text" }} disabled />
+                        <TextArea label="Readonly" value={{ bind: "$page.text" }} readOnly />
+                        <TextArea label="Placeholder" value={{ bind: "$page.text" }} placeholder="Type something here..." />
+                        <TextArea label="Tooltip" value={{ bind: "$page.text" }} tooltip='This is a tooltip.' />
+                        <TextArea label="Required" value= {{ bind: "$page.text" }} required />
+                        <TextArea label="Styled" value={{ bind: "$page.text" }} inputStyle={{border: '1px solid green'}} />
+                        <TextArea label="View" value={{ bind: "$page.text" }} mode="view" />
+                        <TextArea label="EmptyText" value={{ bind: "$page.text" }} mode="view" emptyText="N/A" />
+                    </div>
+                </Section>
+                <Section mod="well" layout={{type: LabelsTopLayout, vertical: true}}>
+                    <div layout={LabelsLeftLayout}>
+                        <Select value= {{ bind: "$page.selection" }} label="Standard">
+                            <option value={1}>Option 1</option>
+                            <option value={2}>Option 2</option>
+                        </Select>
+                        <Select value= {{ bind: "$page.selection" }} label="Disabled" disabled>
+                            <option value={1}>Option 1</option>
+                            <option value={2}>Option 2</option>
+                        </Select>
+                        <Select value= {{ bind: "$page.selection" }} label="Required" required>
+                            <option />
+                            <option value={1}>Option 1</option>
+                            <option value={2}>Option 2</option>
+                        </Select>
+                        </div>
+                        <div layout={LabelsLeftLayout}>
+                        <Select value={{ bind: "$page.selection" }} label="Tooltip" tooltip="Tooltip">
+                            <option value={1}>Option 1</option>
+                            <option value={2}>Option 2</option>
+                        </Select>
+                        <Select value= {{ bind: "$page.selection" }} label="Styled" inputStyle={{border: '1px solid green'}} icon="pencil">
+                            <option value={1}>Option 1</option>
+                            <option value={2}>Option 2</option>
+                        </Select>
+                        <Select value={{ bind: "$page.selection2" }} label="Clear" emptyValue={null} placeholder="Please select...">
+                            <option value={1}>Option 1</option>
+                            <option value={2}>Option 2</option>
+                        </Select>
+                    </div>
+                </Section>
+                <Section mod="well" layout={{type: LabelsTopLayout, vertical: true}}>
+                    <div class="widgets" controller={PageController}>
+                        <div layout={LabelsLeftLayout}>
+                            <LookupField
+                                label="Select"
+                                value= {{ bind: "$page.s5.id" }}
+                                text= {{ bind:"$page.s5.text" }}
+                                options={{ bind: "$page.options5" }}/>
+                            <LookupField
+                                label="MultiSelect"
+                                records={{ bind: "$page.s10" }}
+                                options={{ bind: "$page.options10" }}
+                                multiple/>
+                            <LookupField
+                                label="Records"
+                                values={{ bind: "$page.s10ids" }}
+                                options= {{ bind:"$page.options10" }}
+                                multiple/>
+                        </div>
+                        <div layout={LabelsLeftLayout}>
+                            <LookupField
+                                label="Remote Data"
+                                records={{ bind: "$page.selectedCities" }}
+                                onQuery="query"
+                                multiple/>
+                            <LookupField
+                                label="Local Filter"
+                                records={{ bind: "$page.selectedCities2" }}
+                                onQuery="query"
+                                fetchAll
+                                cacheAll
+                                multiple
+                                icon="filter"
+                                closeOnSelect={false} />
+                            <LookupField
+                                label="Select"
+                                value={{ bind: "$page.s5.id" }}
+                                text= {{ bind: "$page.s5.text" }}
+                                icon="pencil"
+                                options={{ bind: "$page.options5" }}/>
+                        </div>
+                    </div>
+                </Section>
+                <Section mod="well" layout={{type: LabelsTopLayout, vertical: true}}>
+                    <List records={{ bind: "$page.records" }}
+                        selection={PropertySelection}
+                        style="width:200px"
+                        emptyText="Nothing found."
+                        mod="bordered">
+                        <div>
+                            <strong>Header <Text expr="{$index}+1" /></strong>
+                        </div>
+                        Description
+                    </List>
+                </Section>
+                <Section mod="well" layout={{type: LabelsTopLayout, vertical: true}}>
+                    <div class="widgets">
+                            <ColorField value={{bind:"$page.color1", defaultValue:'#f88'}} autoFocus />
+                            <div style={{width:'100px', height: '70px', background:{bind:'$page.color1'}}}></div>
+                        </div>
+
+                        <div class="widgets">
+                            <ColorField value={{bind:"$page.color2", defaultValue: 'hsla(360, 40%, 40%, 1)'}} format='hsla'/>
+                            <div style={{width:'100px', height: '70px', background:{bind:'$page.color2'}}}></div>
+                    </div>
+                </Section>
+                <Section mod="well" layout={{type: LabelsTopLayout, vertical: true}}>
+                    <div class="widgets">
+                        <ColorPicker value={{ bind: "$page.color" }}/>
+                        <div style={{width:'100px', height: '70px', background:{bind:'$page.color'}}}></div>
+                    </div>
+                </Section>
+                <Section mod="well" layout={{type: LabelsTopLayout, vertical: true}}>
+                   <div layout={LabelsLeftLayout}>
+                        <Slider label="Standard" value={{ bind: "$page.to" }} tooltip={{
+                            text:{tpl: '{$page.to:n;2}' },
+                            placement: 'up'
+                        }} />
+                        <Slider label="Stepped" from={{ bind: "$page.from" }} step={10} />
+                        <Slider label="Range" from={{ bind: "$page.from" }} to={{ bind: "$page.to" }}/>
+                        <Slider label="Disabled" from={{ bind: "$page.from" }} to={{ bind: "$page.to" }} disabled />
+                    </div>
+                    <Slider vertical from={{ bind: "$page.from" }} to={{ bind: "$page.to" }} step={10} rangeStyle="background:lightsteelblue"/>
+                    <Slider vertical from={{ bind: "$page.from" }} to={{ bind: "$page.to" }} rangeStyle="background:lightgreen"/>
+                    <Slider vertical from={{ bind: "$page.from" }} to={{ bind: "$page.to" }} rangeStyle="background:lightyellow"/>
+                </Section>
+                <Section mod="well" layout={{type: LabelsTopLayout, vertical: true}}>
+                   <div layout={LabelsLeftLayout}>
+                        <TextField label="Standard" value={{ bind: "$page.text" }} autoFocus/>
+                        <TextField label={{text: "Styled", style: "color:green;font-weight:bold"}} value={{ bind: "$page.text" }}/>
+                        <TextField label="Asterisk" value={{ bind:"$page.text" }} required asterisk />
+                        <TextField
+                            label={<Checkbox value={{ bind: "$page.enabled" }}>Enabled</Checkbox>}
+                            value={{ bind: "$page.text" }}
+                            enabled={{ bind: "$page.enabled" }}
+                        />
+                        <TextField
+                            label={{
+                                text: 'Tooltips',
+                                tooltip: 'This tooltip is related to the label.'
+                            }}
+                            value={{ bind: "$page.text" }}
+                            tooltip="This tooltip is related to the field."
+                        />
                     </div>
                 </Section>
             </FlexRow>
