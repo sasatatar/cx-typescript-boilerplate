@@ -24,31 +24,11 @@ import {
     Text,
     Slider,
     ValidationGroup,
-    Heading
+    Heading,
+    Icon
 } from "cx/widgets";
 import {computable, updateArray} from "cx/data";
 import {LabelsLeftLayout, LabelsTopLayout, Controller} from "cx/ui";
-
-
-class PageController extends Controller {
-    onInit() {
-        this.store.init('$page', {
-            name: 'Jane',
-            disabled: true,
-            todoList: [
-                { id: 1, text: 'Learn Cx', done: true }, 
-                { id: 2, text: "Feed the cat", done: false },
-                { id: 3, text: "Take a break", done: false }
-            ],
-            count: 0
-        });
-    }
-
-    greet() {
-        let name = this.store.get('$page.name')
-        MsgBox.alert(`Hello, ${name}!`);
-    }
-}
 
 register('General Purpose Widgets', 'Other examples', <cx>
     <h2 putInto="header">General Purpose Widgets</h2>
@@ -155,6 +135,19 @@ register('General Purpose Widgets', 'Other examples', <cx>
                    <div style="flex: 1; height: 30px; background: lightgray;" />
                    <div style="flex: 1; height: 30px; background: lightgray;" />
                </FlexRow>
+           </Section>
+           <Section mod="well" layout={{type: LabelsTopLayout, vertical: true}}>
+                <Icon name="calendar" />
+                <Icon name="calculator" style="color:blue" />
+                <Icon name="bug" style="background:yellow"/>
+                <Icon name="pencil" />
+           </Section>
+           <Section mod="well" layout={{type: LabelsTopLayout, vertical: true}}>
+               <ValidationGroup layout={LabelsLeftLayout} invalid={{ bind: "$page.invalid" }}>
+                    <TextField label="Text" value={{ bind: "$page.text" }} required />
+                    <NumberField label="Number" value={{ bind: "$page.number" }} required minValue={10} />
+                    <Text value="Please correct the errors." visible={{ bind: "$page.invalid" }}/>
+                </ValidationGroup>
            </Section>
         </FlexRow>
     </div>

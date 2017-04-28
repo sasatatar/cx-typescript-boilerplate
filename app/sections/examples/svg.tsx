@@ -28,27 +28,6 @@ import {computable, updateArray} from "cx/data";
 import {LabelsLeftLayout, LabelsTopLayout, Controller} from "cx/ui";
 import {Svg, Rectangle, Ellipse, Line, ClipRect} from "cx/svg";
 
-
-class PageController extends Controller {
-    onInit() {
-        this.store.init('$page', {
-            name: 'Jane',
-            disabled: true,
-            todoList: [
-                { id: 1, text: 'Learn Cx', done: true }, 
-                { id: 2, text: "Feed the cat", done: false },
-                { id: 3, text: "Take a break", done: false }
-            ],
-            count: 0
-        });
-    }
-
-    greet() {
-        let name = this.store.get('$page.name')
-        MsgBox.alert(`Hello, ${name}!`);
-    }
-}
-
 register('Svg', 'Other examples', <cx>
     <h2 putInto="header">Svg</h2>
     <div class="example pad wrap">

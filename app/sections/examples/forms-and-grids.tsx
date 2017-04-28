@@ -28,32 +28,21 @@ import {
     ValidationGroup,
     FieldGroup,
     LabeledContainer,
-    Switch
+    Switch,
+    ValidationError,
+    Icon
 } from "cx/widgets";
 import {computable, updateArray} from "cx/data";
-import {LabelsLeftLayout, LabelsTopLayout, Controller, PropertySelection} from "cx/ui";
+import {LabelsLeftLayout, LabelsTopLayout, Controller, PropertySelection, FirstVisibleChildLayout} from "cx/ui";
 
 
 class PageController extends Controller {
-    onInit() {
-        this.store.init('$page', {
-            name: 'Jane',
-            disabled: true,
-            todoList: [
-                { id: 1, text: 'Learn Cx', done: true }, 
-                { id: 2, text: "Feed the cat", done: false },
-                { id: 3, text: "Take a break", done: false }
-            ],
-            count: 0
-        });
-    }
-
-    greet() {
-        let name = this.store.get('$page.name')
-        MsgBox.alert(`Hello, ${name}!`);
-    }
-    init() {
+    init() { 
        super.init();
+       
+       this.store.init('$page.records', Array.from({length: 5}, (x, i)=>({
+              text: `${i+1}`
+            })));
        this.store.init('$page', { 
             records: Array.from({length: 5}, (x, i)=>({
               text: `${i+1}`
@@ -75,8 +64,6 @@ class PageController extends Controller {
        });
     }
  }
-
-
 
 register('Forms and Grids', 'Other examples', <cx>
     <h2 putInto="header">Forms and Grids</h2>
@@ -402,6 +389,74 @@ register('Forms and Grids', 'Other examples', <cx>
                             <span style="color:red">Label</span>
                         </Switch>
                     </div>
+                </Section>
+                <Section mod="well" layout={{type: LabelsTopLayout, vertical: true}}>
+                    <TextField
+                        label="Name"
+                        value={{ bind: "$page.default" }}
+                        placeholder="Required"
+                        required
+                    />
+                </Section>
+                <Section mod="well" layout={{type: LabelsTopLayout, vertical: true}}>
+                    <TextField label="Asterisk" value= {{ bind: "$page.asterisk" }} placeholder="Required" required asterisk />
+                    <TextField label="Visited" value={{ bind: "$page.visited" }} placeholder="Required" required visited />
+                </Section>
+                <Section mod="well" layout={{type: LabelsTopLayout, vertical: true}}>
+                    <TextField
+                        label="Help"
+                        value={{ bind: "$page.help" }}
+                        help={<span style="font-size:smaller">Help text</span>}
+                    />
+                </Section>
+                <Section mod="well" layout={{type: LabelsTopLayout, vertical: true}}>
+                    <ValidationGroup layout={LabelsLeftLayout}>
+                        <TextField label="Help" value={{ bind: "$page.help2" }} help={<Button icon="calculator" mod="hollow"/>}
+                        />
+                        <TextField label="Help" value={{ bind: "$page.help2" }} required visited help={ValidationError}
+                        />
+                    </ValidationGroup>
+                </Section>
+                <Section mod="well" layout={{type: LabelsTopLayout, vertical: true}}>
+                    <ValidationGroup layout={LabelsLeftLayout}>
+                        <TextField label="Help" value={{ bind: "$page.help3" }} required visited
+                            minLength={5} validationMode="help" />
+
+                        <TextField label="Help Block" value={{ bind: "$page.help4" }} required visited
+                            minLength={5} validationMode="help-block" />
+                    </ValidationGroup>
+                </Section>
+                <Section mod="well" layout={{type: LabelsTopLayout, vertical: true}}>
+                    <TextField
+                        label="Favorite framework?" value={{ bind: "$page.framework" }}
+                        validationMode="help-block" reactOn="enter blur"
+                        onValidate={(v) => {
+                            if (v != 'Cx')
+                                return 'Oops, wrong answer!'
+                        }}
+                    />
+                </Section>
+                <Section mod="well" layout={{type: LabelsTopLayout, vertical: true}}>
+                    <ValidationGroup layout={LabelsTopLayout}>
+                        <TextField
+                            label="Username"
+                            value={{ bind: "$page.form.username" }}
+                            required visited
+                            onValidate={
+                                v => new Promise(fulfill => {
+                                    setTimeout(() => {
+                                        fulfill(v == 'cx' ? "This name is taken." : false);
+                                    }, 500)
+                                })
+                            }
+                            help={
+                                <div layout={FirstVisibleChildLayout}>
+                                    <ValidationError />
+                                    <Icon name="check" style="color:green"/>
+                                </div>
+                            }
+                        />
+                    </ValidationGroup>
                 </Section>
             </FlexRow>
     </div>
