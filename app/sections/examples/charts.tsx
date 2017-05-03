@@ -20,7 +20,6 @@ import {
     Button,
     MsgBox,
     CheckboxProps,
-    Text,
     Slider,
     CxCredit,
     Grid
@@ -28,7 +27,7 @@ import {
 import {computable, updateArray} from "cx/data";
 import {LabelsLeftLayout, LabelsTopLayout, Controller, KeySelection, Repeater} from "cx/ui";
 import {Chart, Gridlines, NumericAxis, PieChart, PieSlice, Legend, ColorMap, LineGraph, ScatterGraph, Marker, Range, CategoryAxis, ColumnGraph, TimeAxis, Column} from 'cx/charts';
-import {Rectangle, Svg, Line, ClipRect} from "cx/svg";
+import {Rectangle, Svg, Line, ClipRect, Text} from "cx/svg";
 
 var categories = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 

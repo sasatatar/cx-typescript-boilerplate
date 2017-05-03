@@ -30,20 +30,6 @@ import {
 import {computable, updateArray} from "cx/data";
 import {LabelsLeftLayout, LabelsTopLayout, Controller} from "cx/ui";
 
-
-class PageController extends Controller {
-    init() {
-   super.init();
-   this.store.set('$page.records', Array.from({length: 5}).map((v, i)=>({
-      id: i+1,
-      fullName: casual.full_name,
-      phone: casual.phone,
-      city: casual.city,
-      notified: casual.coin_flip
-   })));
-  }
- }
-
 var addOverlay = store => {
    var overlay = Overlay.create(<cx>
       <Overlay style={{

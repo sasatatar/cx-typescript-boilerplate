@@ -21,12 +21,11 @@ import {
     MsgBox,
     CheckboxProps,
     Repeater,
-    Text,
     Slider
 } from "cx/widgets";
 import {computable, updateArray} from "cx/data";
 import {LabelsLeftLayout, LabelsTopLayout, Controller} from "cx/ui";
-import {Svg, Rectangle, Ellipse, Line, ClipRect} from "cx/svg";
+import {Svg, Rectangle, Ellipse, Line, ClipRect, Text} from "cx/svg";
 
 register('Svg', 'Other examples', <cx>
     <h2 putInto="header">Svg</h2>
