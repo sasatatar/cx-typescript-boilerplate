@@ -69,7 +69,7 @@ register('Forms and Grids', 'Other examples', <cx>
     <h2 putInto="header">Forms and Grids</h2>
     <div class="example pad wrap">
             <FlexRow wrap spacing="large">           
-                 <Section mod="well" layout={{type: LabelsTopLayout, vertical: true}}>
+                 <Section mod="well" layout={{type: LabelsTopLayout, vertical: true}} header={{ level: 4, text: 'TextField'}}>
                     <div layout={LabelsLeftLayout}>
                         <TextField label="Standard" value={{ bind: "$page.text" }} autoFocus/>
                         <TextField label="Disabled" value={{ bind: "$page.text" }} disabled/>
@@ -88,7 +88,7 @@ register('Forms and Grids', 'Other examples', <cx>
                         <TextField label="EmptyText" value={{ bind: "$page.text" }} mode="view" emptyText="N/A"/>
                     </div>
                 </Section>
-                <Section mod="well" layout={{type: LabelsTopLayout, vertical: true}}>
+                <Section mod="well" layout={{type: LabelsTopLayout, vertical: true}} header={{ level: 4, text: 'NumberField'}}>
                     <div layout={LabelsLeftLayout}>
                         <NumberField label="Standard" value={{ bind: "$page.number" }} autoFocus />
                         <NumberField label="Disabled" value={{ bind: "$page.number" }} disabled />
@@ -138,7 +138,7 @@ register('Forms and Grids', 'Other examples', <cx>
                         />
                     </div>
                 </Section>
-                <Section mod="well" layout={{type: LabelsTopLayout, vertical: true}}>
+                <Section mod="well" layout={{type: LabelsTopLayout, vertical: true}} header={{ level: 4, text: 'CheckBox'}}>
                     <div layout={LabelsLeftLayout}>
                         <Checkbox label="Native" value={{ bind: "$page.checked" }} text="Checkbox" native/>
                         <Checkbox label="Standard" value={{ bind: "$page.checked" }} text="Checkbox" />
@@ -152,7 +152,7 @@ register('Forms and Grids', 'Other examples', <cx>
                         <Checkbox label="Three State" value={{ bind: "$page.checked2" }} text="Checkbox" indeterminate />
                     </div>
                 </Section>
-                <Section mod="well" layout={{type: LabelsTopLayout, vertical: true}}>
+                <Section mod="well" layout={{type: LabelsTopLayout, vertical: true}} header={{ level: 4, text: 'Radio'}}>
                     <div layout={LabelsLeftLayout}>
                         <Radio label="Native" value={{ bind: "$page.option" }} option="0" text="Radio" native/>
                         <Radio label="Standard" value={{ bind: "$page.option" }} option="1" text="Radio"/>
@@ -164,7 +164,7 @@ register('Forms and Grids', 'Other examples', <cx>
                         <Radio label="Styled" value={{ bind: "$page.option" }} option="5" inputStyle="color:red" text="Radio"/>
                     </div>
                 </Section>
-                <Section mod="well" layout={{type: LabelsTopLayout, vertical: true}}>
+                <Section mod="well" layout={{type: LabelsTopLayout, vertical: true}} header={{ level: 4, text: 'DateField'}}>
                     <div layout={LabelsLeftLayout}>
                         <DateField label="Standard" value={{ bind: "$page.date" }} format="yyyyMMMMdd" autoFocus/>
                         <DateField label="Disabled" value={{ bind: "$page.date" }} disabled />
@@ -178,7 +178,7 @@ register('Forms and Grids', 'Other examples', <cx>
                         <DateField label="EmptyText" value={{ bind: "$page.date" }} mode="view" emptyText="N/A" />
                     </div>
                 </Section>
-                <Section mod="well" layout={{type: LabelsTopLayout, vertical: true}}>
+                <Section mod="well" layout={{type: LabelsTopLayout, vertical: true}} header={{ level: 4, text: 'Calendar'}}>
                     <div class="widgets">
                         <Calendar value={{ bind: "$page.date" }}/>
                         <Calendar value={{ bind: "$page.date" }}
@@ -188,13 +188,13 @@ register('Forms and Grids', 'Other examples', <cx>
                                 refDate="2016-05-08" />
                     </div>
                 </Section>
-                <Section mod="well" layout={{type: LabelsTopLayout, vertical: true}}>
+                <Section mod="well" layout={{type: LabelsTopLayout, vertical: true}} header={{ level: 4, text: 'MonthField'}}>
                     <div layout={LabelsLeftLayout}>
                         <MonthField range from={{ bind: "$page.from" }} to={{ bind: "$page.to" }} label="Range" autoFocus/>
                         <MonthField value={{ bind: "$page.date" }} label="Single"/>
                     </div>
                 </Section>
-                <Section mod="well" layout={{type: LabelsTopLayout, vertical: true}}>
+                <Section mod="well" layout={{type: LabelsTopLayout, vertical: true}} header={{ level: 4, text: 'TextArea'}}>
                     <div layout={LabelsLeftLayout}>
                         <TextArea label="Standard" value={{ bind: "$page.text" }} rows={5} autoFocus />
                         <TextArea label="Disabled" value={{ bind: "$page.text" }} disabled />
@@ -207,7 +207,7 @@ register('Forms and Grids', 'Other examples', <cx>
                         <TextArea label="EmptyText" value={{ bind: "$page.text" }} mode="view" emptyText="N/A" />
                     </div>
                 </Section>
-                <Section mod="well" layout={{type: LabelsTopLayout, vertical: true}}>
+                <Section mod="well" layout={{type: LabelsTopLayout, vertical: true}} header={{ level: 4, text: 'Select'}}>
                     <div layout={LabelsLeftLayout}>
                         <Select value= {{ bind: "$page.selection" }} label="Standard">
                             <option value={1}>Option 1</option>
@@ -238,7 +238,7 @@ register('Forms and Grids', 'Other examples', <cx>
                         </Select>
                     </div>
                 </Section>
-                <Section mod="well" layout={{type: LabelsTopLayout, vertical: true}}>
+                <Section mod="well" layout={{type: LabelsTopLayout, vertical: true}} header={{ level: 4, text: 'LookupField'}}>
                     <div class="widgets" controller={PageController}>
                         <div layout={LabelsLeftLayout}>
                             <LookupField
@@ -281,7 +281,7 @@ register('Forms and Grids', 'Other examples', <cx>
                         </div>
                     </div>
                 </Section>
-                <Section mod="well" layout={{type: LabelsTopLayout, vertical: true}}>
+                <Section mod="well" layout={{type: LabelsTopLayout, vertical: true}} header={{ level: 4, text: 'List'}}>
                     <List records={{ bind: "$page.records" }}
                         selection={PropertySelection}
                         style="width:200px"
@@ -293,7 +293,7 @@ register('Forms and Grids', 'Other examples', <cx>
                         Description
                     </List>
                 </Section>
-                <Section mod="well" layout={{type: LabelsTopLayout, vertical: true}}>
+                <Section mod="well" layout={{type: LabelsTopLayout, vertical: true}} header={{ level: 4, text: 'ColorField'}}>
                     <div class="widgets">
                             <ColorField value={{bind:"$page.color1", defaultValue:'#f88'}} autoFocus />
                             <div style={{width:'100px', height: '70px', background:{bind:'$page.color1'}}}></div>
@@ -304,13 +304,13 @@ register('Forms and Grids', 'Other examples', <cx>
                             <div style={{width:'100px', height: '70px', background:{bind:'$page.color2'}}}></div>
                     </div>
                 </Section>
-                <Section mod="well" layout={{type: LabelsTopLayout, vertical: true}}>
+                <Section mod="well" layout={{type: LabelsTopLayout, vertical: true}} header={{ level: 4, text: 'ColorPicker'}}>
                     <div class="widgets">
                         <ColorPicker value={{ bind: "$page.color" }}/>
                         <div style={{width:'100px', height: '70px', background:{bind:'$page.color'}}}></div>
                     </div>
                 </Section>
-                <Section mod="well" layout={{type: LabelsTopLayout, vertical: true}}>
+                <Section mod="well" layout={{type: LabelsTopLayout, vertical: true}} header={{ level: 4, text: 'Slider'}}>
                    <div layout={LabelsLeftLayout}>
                         <Slider label="Standard" value={{ bind: "$page.to" }} tooltip={{
                             text:{tpl: '{$page.to:n;2}' },
@@ -324,8 +324,8 @@ register('Forms and Grids', 'Other examples', <cx>
                     <Slider vertical from={{ bind: "$page.from" }} to={{ bind: "$page.to" }} rangeStyle="background:lightgreen"/>
                     <Slider vertical from={{ bind: "$page.from" }} to={{ bind: "$page.to" }} rangeStyle="background:lightyellow"/>
                 </Section>
-                <Section mod="well" layout={{type: LabelsTopLayout, vertical: true}}>
-                   <div layout={LabelsLeftLayout}>
+                <Section mod="well" layout={{type: LabelsTopLayout, vertical: true}} header={{ level: 4, text: 'TextField'}}>
+                   <div>
                         <TextField label="Standard" value={{ bind: "$page.text" }} autoFocus/>
                         <TextField label={{text: "Styled", style: "color:green;font-weight:bold"}} value={{ bind: "$page.text" }}/>
                         <TextField label="Asterisk" value={{ bind:"$page.text" }} required asterisk />

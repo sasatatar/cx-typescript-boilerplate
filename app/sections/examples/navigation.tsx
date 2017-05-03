@@ -51,7 +51,7 @@ register('Navigation', 'Other examples', <cx>
                     <Submenu>
                     File
                     <Menu putInto="dropdown">
-                        <a href="#" onClick={e=>{ e.preventDefault(); document.activeElement.blur(); }}>Link</a>
+                        <a href="#" onClick={e=>{ e.preventDefault(); (document.activeElement as HTMLElement).blur() }}>Link</a>
                         <hr/>
                         <TextField value={{ bind: "$page.text" }} mod="menu" />
                         <TextField value={{ bind: "$page.text" }} mod="menu" />
