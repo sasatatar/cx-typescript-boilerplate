@@ -8,3 +8,4 @@ import "./general-purpose-widgets";
 import "./overlays";
 import "./svg";
 import "./charts";
+import "./localization";
