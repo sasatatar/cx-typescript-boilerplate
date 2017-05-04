@@ -34,7 +34,7 @@ import {
 } from "cx/widgets";
 import {computable, updateArray} from "cx/data";
 import {LabelsLeftLayout, LabelsTopLayout, Controller, PropertySelection, FirstVisibleChildLayout} from "cx/ui";
-
+import casual from '../casual';
 
 class PageController extends Controller {
     init() { 
