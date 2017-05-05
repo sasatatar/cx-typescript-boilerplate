@@ -102,7 +102,7 @@ register('Svg', 'Other examples', <cx>
                     <Text anchors="0 1 1 1" textAnchor="end" dy="0.8em">Top-right</Text>
                 </Svg>
 
-                    <div style="width:100%" />
+                    <div styles="width:100%" />
 
                 <Svg style="width:100px;height:100px;background:white;margin:5px">
                     <Rectangle anchors="0.5 1 1 0" style="fill:lightblue" />
@@ -117,7 +117,7 @@ register('Svg', 'Other examples', <cx>
                     <Text anchors="0.5 1 1 1" textAnchor="end" dy="0.4em">Middle-right</Text>
                 </Svg>
 
-                    <div style="width:100%" />
+                    <div styles="width:100%" />
 
                 <Svg style="width:100px;height:100px;background:white;margin:5px">
                     <Rectangle anchors="1 1 1 0" style="fill:lightblue" />

@@ -35,7 +35,7 @@ register('General Purpose Widgets', 'Other examples', <cx>
     <div class="example pad wrap">
         <FlexRow wrap spacing="large">
            <Section mod="well" layout={{type: LabelsTopLayout, vertical: true}}>
-               <div style="width:200px" class="test">
+               <div styles="width:200px" class="test">
                     <h4>H4</h4>
                     <p>Paragraph</p>
                     <span>Span</span>
@@ -97,43 +97,43 @@ register('General Purpose Widgets', 'Other examples', <cx>
            </Section>
            <Section mod="well" layout={{type: LabelsTopLayout, vertical: true}}>
                <FlexRow spacing>
-                   <div style="width: 30px; height: 30px; background: lightgray;" />
-                   <div style="width: 40px; height: 40px; background: lightgray;" />
-                   <div style="width: 50px; height: 50px; background: lightgray;" />
+                   <div styles="width: 30px; height: 30px; background: lightgray;" />
+                   <div styles="width: 40px; height: 40px; background: lightgray;" />
+                   <div styles="width: 50px; height: 50px; background: lightgray;" />
                </FlexRow>
                <FlexRow spacing justify="center">
-                   <div style="width: 30px; height: 30px; background: lightgray;" />
-                   <div style="width: 40px; height: 40px; background: lightgray;" />
-                   <div style="width: 50px; height: 50px; background: lightgray;" />
+                   <div styles="width: 30px; height: 30px; background: lightgray;" />
+                   <div styles="width: 40px; height: 40px; background: lightgray;" />
+                   <div styles="width: 50px; height: 50px; background: lightgray;" />
                </FlexRow>
                <FlexRow spacing align="center" justify="end">
-                   <div style="width: 30px; height: 30px; background: lightgray;" />
-                   <div style="width: 40px; height: 40px; background: lightgray;" />
-                   <div style="width: 50px; height: 50px; background: lightgray;" />
+                   <div styles="width: 30px; height: 30px; background: lightgray;" />
+                   <div styles="width: 40px; height: 40px; background: lightgray;" />
+                   <div styles="width: 50px; height: 50px; background: lightgray;" />
                </FlexRow>
                <FlexRow spacing wrap>
                    <Repeater records={Array.from({length: 20})}>
-                       <div style="width: 30px; height: 30px; background: lightgray;" />
+                       <div styles="width: 30px; height: 30px; background: lightgray;" />
                    </Repeater>
                </FlexRow>
                <FlexRow pad spacing wrap style="background:#eee;border:1px solid lightgray;">
                    <Repeater records={Array.from({length: 20})}>
-                       <div style="width: 30px; height: 30px; background: lightgray;" />
+                       <div styles="width: 30px; height: 30px; background: lightgray;" />
                    </Repeater>
                </FlexRow>             
                <FlexRow pad hspacing="xsmall" vspacing="xlarge" wrap style="background:#eee;border:1px solid lightgray;">
                    <Repeater records={Array.from({length: 40})}>
-                       <div style="width: 30px; height: 30px; background: lightgray;" />
+                       <div styles="width: 30px; height: 30px; background: lightgray;" />
                    </Repeater>
                </FlexRow>
                <FlexRow spacing target="desktop">
-                   <div style="flex: 1; height: 30px; background: lightgray;" />
-                   <div style="flex: 1; height: 30px; background: lightgray;" />
-                   <div style="flex: 1; height: 30px; background: lightgray;" />
+                   <div styles="flex: 1; height: 30px; background: lightgray;" />
+                   <div styles="flex: 1; height: 30px; background: lightgray;" />
+                   <div styles="flex: 1; height: 30px; background: lightgray;" />
                </FlexRow>
                <FlexRow spacing target="tablet">
-                   <div style="flex: 1; height: 30px; background: lightgray;" />
-                   <div style="flex: 1; height: 30px; background: lightgray;" />
+                   <div styles="flex: 1; height: 30px; background: lightgray;" />
+                   <div styles="flex: 1; height: 30px; background: lightgray;" />
                </FlexRow>
            </Section>
            <Section mod="well" layout={{type: LabelsTopLayout, vertical: true}}>

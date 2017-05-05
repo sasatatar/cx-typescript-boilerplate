@@ -31,6 +31,8 @@ import {LabelsLeftLayout, LabelsTopLayout, Controller} from "cx/ui";
 import { Chart, Gridlines, Legend, LineGraph, NumericAxis } from "cx/charts";
 import { Rectangle, Svg } from "cx/svg";
 
+declare var System: any;
+
 function loadCulture(culture) {
     //code-splitting - it's mandatory to use string constants so webpack can know how to prepare packages
     switch (culture) {

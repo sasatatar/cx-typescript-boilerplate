@@ -37,6 +37,9 @@ import {LabelsLeftLayout, LabelsTopLayout, Controller, PropertySelection, FirstV
 import casual from '../casual';
 
 class PageController extends Controller {
+
+    cityDb: any;
+
     init() { 
        super.init();
        
