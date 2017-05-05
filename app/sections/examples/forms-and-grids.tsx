@@ -389,7 +389,7 @@ register('Forms and Grids', 'Other examples', <cx>
                             handleStyle="background:white"
                             rangeStyle="background:lightsteelblue"
                         >
-                            <span style="color:red">Label</span>
+                            <span styles="color:red">Label</span>
                         </Switch>
                     </div>
                 </Section>
@@ -409,7 +409,7 @@ register('Forms and Grids', 'Other examples', <cx>
                     <TextField
                         label="Help"
                         value={{ bind: "$page.help" }}
-                        help={<span style="font-size:smaller">Help text</span>}
+                        help={<span styles="font-size:smaller">Help text</span>}
                     />
                 </Section>
                 <Section mod="well" layout={{type: LabelsTopLayout, vertical: true}}>
